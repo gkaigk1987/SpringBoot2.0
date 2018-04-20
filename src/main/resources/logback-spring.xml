@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/base.xml" />
+	<!-- 控制台输出 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/mylog.log</file>
+		<!-- 基于日志大小和时间的日志归档 -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/mylog-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<maxFileSize>100MB</maxFileSize>
+			<!-- 日志保存60天 -->
+			<maxHistory>60</maxHistory>
+			<totalSizeCap>20GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+		<append>true</append>
+	</appender>
+	
+	<appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+		<destination>localhost:5566</destination>
+		<encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder"></encoder>
+	</appender>
+	
+	<!-- addtivity: 是否向上级loger传递打印信息。默认是true -->
+	<logger name="com.gk" level="DEBUG" additivity="false">
+		<!-- 控制台打印日志， -->
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+		<appender-ref ref="LOGSTASH" />
+	</logger>
+	
+    <logger name="org.springframework.jdbc.core" level="DEBUG"  additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+	
+	<root level="INFO">             
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+		<appender-ref ref="LOGSTASH" />  
+	</root>    
+	
+</configuration>
