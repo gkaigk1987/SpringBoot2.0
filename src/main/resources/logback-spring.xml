@@ -34,7 +34,7 @@
 		<!-- 控制台打印日志， -->
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="FILE" />
-		<appender-ref ref="LOGSTASH" />
+		<!-- <appender-ref ref="LOGSTASH" /> -->
 	</logger>
 	
     <logger name="org.springframework.jdbc.core" level="DEBUG"  additivity="false">
@@ -44,7 +44,7 @@
 	<root level="INFO">             
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="FILE" />
-		<appender-ref ref="LOGSTASH" />  
+		<!-- <appender-ref ref="LOGSTASH" />   -->
 	</root>    
 	
 </configuration>
