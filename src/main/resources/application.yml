@@ -1,2 +1,40 @@
-server:
+server: 
   port: 8888
+  
+logging:
+  level:
+    com.gk: debug
+    org.springframework: off
+
+#Spring相关配置
+spring:
+  #thymeleaf配置
+  thymeleaf:
+    cache: false
+    encoding: utf-8
+    mode: html
+    prefix: classpath:/templates/
+    suffix: .html
+  #database配置
+  datasource:
+    url: jdbc:mysql://rm-bp102k9m31w3854p4o.mysql.rds.aliyuncs.com:3306/pqdt?rewriteBatchedStatements=true&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useOldAliasMetadataBehavior=true&serverTimezone=CTT
+    driver-class-name: com.mysql.jdbc.Driver
+    username: datacenter
+    password: yx7qSzIsq_sqwk
+    filters: stat,wall
+    maxActive: 100
+    initialSize: 10
+    minIdle: 1
+    maxWait: 60000
+
+#MyBatis相关配置,无需手动写代码配置mybatis相关设置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.gk.model
+
+#PageHelper相关配置
+pagehelper: 
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql 
