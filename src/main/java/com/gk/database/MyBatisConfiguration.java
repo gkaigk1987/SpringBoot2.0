@@ -48,7 +48,7 @@ public class MyBatisConfiguration {
 	@Value("${spring.datasource.maxWait}")
 	private Long maxWait;
 	
-	//无需配置mybatis，mybatis-spring-boot-starter自读读取yml文件进行配置
+	//无需配置mybatis，mybatis-spring-boot-starter自动读取yml文件进行配置
 //	@Value("${mybatis.mapper-locations}")
 //	private String mapperLocations;
 	
