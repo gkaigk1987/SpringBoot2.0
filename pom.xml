@@ -19,6 +19,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -86,10 +87,23 @@
 			<artifactId>pagehelper-spring-boot-starter</artifactId>
 			<version>1.2.7</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.elasticsearch</groupId>
+		    <artifactId>elasticsearch</artifactId>
+		    <version>6.4.1</version><!--$NO-MVN-MAN-VER$-->
+		</dependency>
+		
+		<!-- elasticsearch Java 客户端 -->
+		<dependency>
+		    <groupId>org.elasticsearch.client</groupId>
+		    <artifactId>transport</artifactId>
+		    <version>6.4.1</version><!--$NO-MVN-MAN-VER$-->
+		</dependency>
 
 	</dependencies>
-
 	<build>
+		<finalName>GKSpringBoot2</finalName>
 		<!-- 将配置文件也打进jar包 -->
 		<resources>
 			<resource>
@@ -123,6 +137,20 @@
 					<configurationFile>src/main/resources/generatorConfig.xml</configurationFile>
 					<verbose>true</verbose>
 					<overwrite>true</overwrite>
+				</configuration>
+			</plugin>
+			<!-- 配置启动main方法类，并指定依赖的jar包路径，配置后就不会将依赖包打进jar包 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>com.gk.ElkSpringBootApplication</mainClass>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+						</manifest>
+					</archive>
 				</configuration>
 			</plugin>
 			<!-- 指定maven编译的jdk版本 -->
