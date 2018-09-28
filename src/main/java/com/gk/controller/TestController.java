@@ -25,8 +25,8 @@ public class TestController {
 		JSONObject json = new JSONObject();
 		User user = new User();
 		user.setId(1L);
-		user.setName("高凯");
-		user.setAge(31);
+		user.setName("倩倩");
+		user.setAge(27);
 		logger.info(JSONObject.toJSONString(user));
 		json.put("succ", true);
 		json.put("msg", "成功");
