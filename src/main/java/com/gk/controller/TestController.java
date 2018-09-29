@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,7 +24,7 @@ public class TestController {
 	@Autowired
 	private IThesisService thesisService;
 	
-	@RequestMapping("/")
+	@GetMapping("/")
 	public String index(Model model, HttpServletRequest request, HttpSession session) {
 		model.addAttribute("testName", "GK SpringBoot2 Test");
 		return "index";
@@ -31,16 +32,13 @@ public class TestController {
 	
 	@RequestMapping("/jsonTest")
 	@ResponseBody
-	public JSONObject test() {
-		JSONObject json = new JSONObject();
+	public User test() {
 		User user = new User();
 		user.setId(1L);
 		user.setName("倩倩");
 		user.setAge(27);
 		logger.info(JSONObject.toJSONString(user));
-		json.put("succ", true);
-		json.put("msg", "成功");
-		return json;
+		return user;
 	}
 	
 	@RequestMapping("/getThesisCount")

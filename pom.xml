@@ -87,10 +87,17 @@
 			<artifactId>pagehelper-spring-boot-starter</artifactId>
 			<version>1.2.7</version>
 		</dependency>
-		
+		<!-- springboot2还没能支持es6，这边需要手动配置，否则默认是es5 -->
 		<dependency>
 		    <groupId>org.elasticsearch</groupId>
 		    <artifactId>elasticsearch</artifactId>
+		    <version>6.4.1</version><!--$NO-MVN-MAN-VER$-->
+		</dependency>
+		
+		<!-- 此处需要手动指定该配置，否则ES会报错 -->
+		<dependency>
+		    <groupId>org.elasticsearch.plugin</groupId>
+		    <artifactId>transport-netty4-client</artifactId>
 		    <version>6.4.1</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
 		
@@ -179,11 +186,12 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- SpringBoot打包插件 -->
-			<plugin>
+			<!-- SpringBoot打包插件 使用该插件则会打包成SpringBoot形式，及打成的包内有BOOT-INF文件夹 -->
+			<!-- 不使用boot的Maven插件，打包完成后保内无上述所说的BOOT-INF文件夹，打包后前后的结构也不一样 -->
+			<!-- <plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+			</plugin> -->
 		</plugins>
 	</build>
 

@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.gk.esService.ThesisIndexService;
 import com.gk.mapper.ThesisMapper;
 import com.gk.model.Thesis;
 import com.gk.model.ThesisExample;
@@ -26,6 +27,9 @@ public class BootTest {
 	@Autowired
 	private ThesisMapper thesisMapper;
 	
+	@Autowired
+	private ThesisIndexService thesisIndexService;
+	
 	@Test
 	public void test01() {
 		PageHelper.startPage(1, 10);
@@ -39,6 +43,11 @@ public class BootTest {
 	public void test02() {
 		Long c = thesisMapper.getThesisCount();
 		System.out.println("================================" + c + "=============================");
+	}
+	
+	@Test
+	public void testIndexThesis() {
+		thesisIndexService.createThesisIndices();
 	}
 	
 }

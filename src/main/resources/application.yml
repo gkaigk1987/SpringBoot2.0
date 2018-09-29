@@ -26,7 +26,7 @@ spring:
     initialSize: 10
     minIdle: 1
     maxWait: 60000
-
+  
 #MyBatis相关配置,无需手动写代码配置mybatis相关设置
 mybatis:
   mapper-locations: classpath:mapper/*.xml
@@ -38,3 +38,8 @@ pagehelper:
   reasonable: true
   support-methods-arguments: true
   params: count=countSql 
+ 
+#ElasticSearch基本配置  
+es: 
+  host: localhost
+  port: 9300
