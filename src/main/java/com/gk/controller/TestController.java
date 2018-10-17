@@ -10,11 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
 import com.gk.model.User;
 import com.gk.service.IThesisService;
+
+import io.swagger.annotations.ApiOperation;
 
 @Controller
 public class TestController {
@@ -24,13 +27,15 @@ public class TestController {
 	@Autowired
 	private IThesisService thesisService;
 	
+	@ApiOperation(value="SpringBoot2 Test")
 	@GetMapping("/")
 	public String index(Model model, HttpServletRequest request, HttpSession session) {
 		model.addAttribute("testName", "GK SpringBoot2 Test");
 		return "index";
 	}
 	
-	@RequestMapping("/jsonTest")
+	@ApiOperation(value="SpringBoot2 Json Test")
+	@RequestMapping(value = "/jsonTest",method = RequestMethod.GET)
 	@ResponseBody
 	public User test() {
 		User user = new User();

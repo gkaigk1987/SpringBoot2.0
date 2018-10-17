@@ -1,13 +1,6 @@
-server: 
-  port: 8898
-  
-logging:
-  level:
-    com.gk: debug
-    org.springframework: off
-
 #Spring相关配置
 spring:
+#  profiles: 
   #thymeleaf配置
   thymeleaf:
     cache: false
@@ -26,6 +19,14 @@ spring:
     initialSize: 10
     minIdle: 1
     maxWait: 60000
+    
+server: 
+  port: 8898
+  
+logging:
+  level:
+    com.gk: debug
+    org.springframework: off
   
 #MyBatis相关配置,无需手动写代码配置mybatis相关设置
 mybatis:
