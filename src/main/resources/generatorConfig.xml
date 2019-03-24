@@ -11,7 +11,7 @@
 		</commentGenerator>
 	
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://rm-bp102k9m31w3854p4o.mysql.rds.aliyuncs.com:3306/pqdt" userId="datacenter" password="yx7qSzIsq_sqwk">
+			connectionURL="jdbc:mysql://rm-bp102k9m31w3854p4o.mysql.rds.aliyuncs.com:3306/pqdt" userId="datacenter" password="mimabutigong">
 		</jdbcConnection>
 		
 

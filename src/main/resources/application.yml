@@ -13,13 +13,33 @@ spring:
     url: jdbc:mysql://rm-bp102k9m31w3854p4o.mysql.rds.aliyuncs.com:3306/pqdt?rewriteBatchedStatements=true&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useOldAliasMetadataBehavior=true&serverTimezone=CTT
     driver-class-name: com.mysql.jdbc.Driver
     username: datacenter
-    password: yx7qSzIsq_sqwk
+    password: mimabutigong
     filters: stat,wall
     maxActive: 100
     initialSize: 10
     minIdle: 1
     maxWait: 60000
-    
+  #Spring kafka 配置
+  kafka:
+    bootstrap-servers:
+    - 192.168.0.197:9092
+    - 192.168.0.198:9092
+    - 192.168.0.199:9092
+    producer:
+      acks: all
+      retries: 0
+      batch-size: 16384
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: test-consumer-group
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      auto-commit-interval: 100
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      
 server: 
   port: 8898
   
