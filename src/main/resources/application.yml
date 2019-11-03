@@ -5,7 +5,7 @@ spring:
   thymeleaf:
     cache: false
     encoding: utf-8
-    mode: html
+    mode: LEGACYHTML5 #html
     prefix: classpath:/templates/
     suffix: .html
   #database配置

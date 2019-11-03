@@ -1,5 +1,7 @@
 package com.gk.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.gk.model.Thesis;
 import com.gk.model.User;
 import com.gk.service.IThesisService;
 
@@ -52,5 +57,25 @@ public class TestController {
 		return thesisService.getThesisCount();
 	}
 	
+	@GetMapping(value = "/thesisList")
+	public String thesisList() {
+		return "thesis/thesis";
+	}
+	
+	@GetMapping(value = "/loadThesisList")
+	@ResponseBody
+	public JSONObject loadThesisList(HttpServletRequest request, HttpSession session) {
+		JSONObject json = new JSONObject();
+		Integer offset = Integer.valueOf(request.getParameter("offset"));
+		Integer limit = Integer.valueOf(request.getParameter("limit"));
+		int pageNum = offset / limit + 1;
+		PageHelper.startPage(pageNum, limit);
+		
+		List<Thesis> thesisList = thesisService.getThesisList();
+		PageInfo<Thesis> pageInfo = new PageInfo<>(thesisList);
+		json.put("total", pageInfo.getTotal());
+		json.put("rows", thesisList);
+		return json;
+	}
 	
 }
