@@ -92,7 +92,7 @@
 		<dependency>
 		    <groupId>org.elasticsearch</groupId>
 		    <artifactId>elasticsearch</artifactId>
-		    <version>6.4.1</version><!--$NO-MVN-MAN-VER$-->
+		    <version>6.8.15</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
 		
 		<!-- 此处需要手动指定该配置，否则ES会报错 -->
